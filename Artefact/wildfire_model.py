@@ -14,13 +14,13 @@ def fire_risk_score(temp, humidity, soil_moisture, light):
     air_dryness = 100 - humidity
     light_factor = light / 20
 
-    score = (temp * 1.8) + (air_dryness * 0.7) + (dryness * 0.9) + (light_factor * 0.2)
+    score = (temp * 1.2) + (air_dryness * 0.4) + (dryness * 0.5) + (light_factor * 0.1)
     return round(score, 2)
 
 def alert_level(score):
-    if score >= 110:
+    if score >= 85:
         return "RED ALERT"
-    elif score >= 90:
+    elif score >= 65:
         return "AMBER ALERT"
     return "GREEN"
 
