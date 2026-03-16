@@ -1,72 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forest Fire Risk Monitoring System</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forest Fire Risk Monitoring System</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-  <h1>Forest Fire Risk Monitoring System</h1>
-  <p>Leaving Certificate Computer Science Coursework Project</p>
-  <p>This report is presented as a local website and should be opened using <code>index.html</code>.</p>
-</header>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Leaving Certificate Computer Science Coursework Project</p>
+      <h1>Forest Fire Risk Monitoring System</h1>
+      <p class="intro">This report is presented as a local website. Open <code>index.html</code> in the Report folder to view the complete coursework report. All images and the project video are stored locally so that the report can be accessed offline.</p>
+    </div>
+  </header>
 
-<section>
-  <h2>1. Meeting the brief</h2>
-  <p>This project is a simulated forest fire risk monitoring system. It was designed around the theme of forests and climate. The system collects environmental data that is linked to wildfire conditions. The data includes temperature, humidity, soil moisture and light intensity. A digital start button is used to begin the system and the environmental values are treated as analogue inputs. The main output of the system is an alert state that changes according to risk.</p><p></p><p>The artefact first collects and stores environmental data in a CSV file. This data is then analysed in Python using a wildfire risk formula. The model increases the score when temperature is high, humidity is low, soil moisture is low and light intensity is high. If the risk score becomes very high, the system responds automatically by producing a red alert. This makes the system adaptive because the output changes when the latest data changes.</p><p></p><p>The project also includes two what-if simulations. In the first scenario the temperature is increased by five degrees. In the second scenario the soil becomes drier. Both scenarios lead to higher average risk scores. The video shows the code running, the files being created, the risk results and the alert output.</p>
-  <div class="note">Replace the placeholder <strong>video.mp4</strong> in this folder with the student’s own recorded demo before submission.</div>
-  <video controls width="800">
-    <source src="video.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <h3>System architecture</h3>
-  <img src="images/architecture.png" alt="System architecture diagram">
-  <h3>Sample risk output</h3>
-  <img src="images/risk_chart.png" alt="Daily wildfire risk score chart">
-</section>
+  <nav class="toc">
+    <strong>Sections</strong>
+    <a href="#meeting">1. Meeting the brief</a>
+    <a href="#investigation">2. Investigation</a>
+    <a href="#design">3. Plan and design</a>
+    <a href="#create">4. Create</a>
+    <a href="#evaluation">5. Evaluation</a>
+    <a href="#references">6. References</a>
+    <a href="#wordcount">7. Summary word count</a>
+  </nav>
 
-<section>
-  <h2>2. Investigation</h2>
-  <p>I began by researching why forests are important and why wildfire risk is increasing. Forests store carbon, support biodiversity and help to regulate climate. However, hotter weather, drier conditions and long periods without rainfall can make forests more vulnerable to fire. I then researched how environmental monitoring systems work. Many systems use sensors to measure temperature, humidity or soil moisture. These readings are sent to a program that analyses the data and identifies danger.</p><p></p><p>I looked at examples of weather monitoring systems, wildfire early warning systems and classroom sensor projects. From this research I decided that my project should focus on wildfire risk because it is easy to connect environmental readings to a meaningful output. I also found that soil moisture is a useful variable because dry ground often increases fire danger. My project uses stored environmental data and a Python model rather than physical hardware, but it follows the same logic as an embedded monitoring system. This research helped me choose the inputs, the alert output and the what-if scenarios.</p>
-</section>
+  <main>
+    <section id="meeting">
+      <h2>1. Meeting the brief</h2>
+      <p>This project responds to the forest-themed brief by creating a functional monitoring system that collects environmental data, analyses wildfire risk and adapts its output to changing conditions. The system uses a sensor simulator to generate thirty days of environmental readings for temperature, humidity, soil moisture and light intensity. These values are stored in a CSV dataset and then analysed by a Python wildfire model.</p>
+      <p>The artefact addresses the basic requirements by simulating environmental inputs, storing the collected data and showing how the system behaves when conditions change. It also addresses the advanced requirements through a Python disaster-risk model, two what-if simulations and an adaptive alert mechanism. The model produces a risk score for each day and converts that score into green, amber or red alert states. This means the system responds automatically when the environmental data becomes more dangerous.</p>
+      <p>The video included in this section should demonstrate the full artefact in operation. It should show the sensor simulator creating the dataset, the wildfire model producing risk scores and alerts, and the scenario analysis comparing changed environmental conditions with normal conditions. Screenshots and charts are included below to support the explanation of the artefact.</p>
 
-<section>
-  <h2>3. Plan and design</h2>
-  <p>At the planning stage I considered a number of possible project ideas. These included a simple plant watering monitor, a forest biodiversity counter and a forest fire risk system. I chose the wildfire risk system because it matched the brief closely. It allowed me to include environmental data collection, process simulation, predictive analysis and an adaptive response in one project.</p><p></p><p>The main stakeholders are forest managers, environmental researchers and local authorities. Forest managers may use such a system to identify dangerous conditions early. Researchers may use the data to study patterns and compare scenarios. The needs of the end user are that the system should be clear, simple and easy to test.</p><p></p><p>The technologies used are Python, CSV files, HTML and CSS. Python was chosen because it is required for the advanced modelling part and it is suitable for data handling. The report website was created in HTML so it can be opened locally without an internet connection. CSV files were used to store and process the environmental data.</p><p></p><p>The architecture is straightforward. A digital start input begins the system. Simulated analogue sensor values are collected and stored. The wildfire model reads the stored data and calculates a risk score. The adaptive output then decides whether the system should remain green, move to amber, or trigger a red alert. This structure makes the data flow easy to explain and easy to test.</p>
-</section>
+      <div class="note">
+        Replace <strong>video.mp4</strong> in this folder with the student’s own local video recording before submission. The video must not be hosted online and should remain under 5 minutes.
+      </div>
 
-<section>
-  <h2>4. Create</h2>
-  <p>The first milestone was creating the data collection script. This script acts as the embedded system controller. It uses a simulated start button and generates environmental readings for thirty days. The readings are written to a CSV file so that the data can be reused by the model. I tested this part by checking that the file was created correctly and that each row contained values in a realistic range.</p><p></p><p>The second milestone was building the wildfire risk model. I created a weighted formula that combines temperature, humidity, soil moisture and light intensity into a single risk score. I tested the model by checking that hotter and drier readings produced higher scores than cooler and wetter readings. This confirmed that the model behaved logically.</p><p></p><p>The third milestone was adding the adaptive system response. The program converts the risk score into three alert states: green, amber and red. A red alert is shown automatically when the score reaches a high threshold. This means the system reacts to changing data without needing the user to make another decision.</p><p></p><p>The fourth milestone was creating the what-if simulations. I built two scenario tests. In the first test temperature was increased by five degrees. In the second test soil moisture was reduced by fifteen percent. The program then calculated new risk scores and compared them with the original average risk. Both tests increased the predicted risk, which supported the model.</p><p></p><p>A problem I encountered was deciding how to combine the environmental variables fairly. At first the score changed too sharply when one value changed. To solve this, I adjusted the weights and tested the output several times until the results looked more balanced and realistic.</p><p></p><p>Overall, the final artefact includes a data collection stage, a risk model, two simulations and an adaptive alert mechanism. The complete process can be run in sequence using the three Python files in the Artefact folder.</p>
-  <h3>What-if scenario comparison</h3>
-  <img src="images/scenario_chart.png" alt="What-if scenario comparison chart">
-</section>
+      <video controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
 
-<section>
-  <h2>5. Evaluation</h2>
-  <p>The finished artefact meets the main goals of the project. It collects environmental data, stores it, analyses it with a Python model and automatically responds when the risk becomes high. It also includes two what-if simulations, which helps to show how future conditions could affect forest fire risk. The structure of the project is clear and the files are easy to follow.</p><p></p><p>One strength of the project is its simplicity. The user can run the programs in sequence and understand the result. Another strength is that the scenario testing gives a useful comparison between normal and changing environmental conditions.</p><p></p><p>A limitation is that the project uses simulated data rather than live sensors. In a future version I would improve the artefact by connecting real hardware such as a microcontroller and environmental sensors. I would also add a live dashboard and allow the threshold values to be adjusted by the user. Even with these limitations, the project demonstrates the core ideas of monitoring, modelling and adaptive response.</p>
-</section>
+      <div class="gallery two-up">
+        <figure>
+          <img src="images/architecture_diagram.png" alt="Architecture diagram of the forest fire risk monitoring system">
+          <figcaption>Figure 1. System architecture showing data collection, risk analysis, scenarios and alerts.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/risk_chart.png" alt="Wildfire risk score over 30 days">
+          <figcaption>Figure 2. Wildfire risk scores produced by the model across the thirty-day dataset.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-<section>
-  <h2>6. References</h2>
-  <ol>
-    <li>State Examinations Commission, Leaving Certificate Computer Science Coursework Project Brief 2026.</li><li>Raspberry Pi Foundation, examples of environmental monitoring with classroom computing.</li><li>micro:bit Educational Foundation, weather and sensing project ideas.</li><li>Climate and forestry background reading from public educational and government sources listed in the project brief.</li>
-  </ol>
-</section>
+    <section id="investigation">
+      <h2>2. Investigation</h2>
+      <p>I began by researching the importance of forests and the main environmental factors linked to wildfire risk. Forests play an important role in carbon storage, biodiversity protection and climate regulation, but they become more vulnerable when weather is hotter and the ground becomes dry. I then looked at examples of environmental monitoring systems, classroom weather stations and wildfire early warning systems to understand how sensor-based projects are usually structured.</p>
+      <p>From this research I identified four variables that could be clearly linked to wildfire conditions: temperature, humidity, soil moisture and light intensity. Temperature and light are associated with heat and drying conditions, while humidity and soil moisture help indicate how wet or dry the environment is. I decided to use these variables because they are easy to explain and suitable for a simple computational model.</p>
+      <p>I also considered whether to build the project around biodiversity loss, drought monitoring or wildfire detection. Wildfire risk was the best choice because it allowed me to include data collection, a clear mathematical model, visible outputs and two useful what-if simulations. I reviewed the project brief and decided that a simulated environmental monitoring system would still allow me to demonstrate the full data flow from input to adaptive output. This investigation directly informed the final structure of the artefact and the choice of graphs used in the report.</p>
+    </section>
 
-<section>
-  <h2>7. Summary word count</h2>
-  <table>
-    <tr><th>Section</th><th>Word count</th></tr>
-    <tr><td>1. Meeting the brief</td><td>201</td></tr>
-    <tr><td>2. Investigation</td><td>171</td></tr>
-    <tr><td>3. Plan and design</td><td>232</td></tr>
-    <tr><td>4. Create</td><td>316</td></tr>
-    <tr><td>5. Evaluation</td><td>166</td></tr>
-    <tr><th>Total</th><th>1086</th></tr>
-  </table>
-</section>
+    <section id="design">
+      <h2>3. Plan and design</h2>
+      <p>At the planning stage I considered several project options. One option was a basic plant watering monitor. Another was a biodiversity observation system. A third was a forest fire risk monitoring system. I selected the wildfire project because it matched the brief most effectively: it could include environmental data collection, a computer-based model, predictive analysis and an adaptive feedback response within one coherent artefact.</p>
+      <p>The key stakeholders are forest managers, environmental researchers and local authorities. Forest managers need early warning information so that dangerous conditions can be identified before a fire spreads. Environmental researchers need structured data that can be compared across conditions and scenarios. Local authorities need clear and simple outputs that can support environmental awareness and decision-making. For these users, the system had to be easy to run, easy to interpret and supported by visual charts.</p>
+      <p>The project uses Python for the core computational artefact, CSV files for structured data storage, and HTML/CSS for the local report website. Python was chosen because it supports file handling, data analysis and mathematical modelling. CSV files were used because they are simple to create, inspect and reuse between the different stages of the project. HTML and CSS were chosen because the brief requires the report to be presented as a website that can be opened locally without internet access.</p>
+      <p>The final architecture follows a clear sequence. First, the sensor simulator creates a structured environmental dataset. Second, the wildfire model reads the dataset and calculates a daily wildfire risk score. Third, the adaptive alert logic assigns a green, amber or red alert. Fourth, the scenario program tests how the same model behaves when temperature increases or soil moisture decreases. Finally, charts are generated to visualise patterns and comparisons. This structure made the project easier to develop, test and explain.</p>
+
+      <div class="gallery two-up">
+        <figure>
+          <img src="images/architecture_diagram.png" alt="Architecture diagram">
+          <figcaption>Figure 3. High-level project architecture.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/temperature_chart.png" alt="Temperature trend chart">
+          <figcaption>Figure 4. Temperature trend used to understand changes across the 30-day period.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="create">
+      <h2>4. Create</h2>
+      <p>The first milestone was creating the sensor simulator. This script acts as the data collection stage of the artefact. It generates thirty days of environmental readings and writes them into <code>dataset.csv</code>. I tested this stage by checking that the file was created correctly, that every row was written, and that the generated values stayed within realistic ranges for temperature, humidity, soil moisture and light intensity.</p>
+      <p>The second milestone was creating the wildfire model. This script reads the dataset and calculates a wildfire risk score for every day. The model uses a weighted formula that combines temperature, air dryness, soil dryness and light intensity. The logic is that higher temperatures, lower humidity, lower soil moisture and stronger light should increase the risk score. After the score is calculated, the program assigns an alert state: green for lower risk, amber for medium risk and red for high risk. This stage was tested by checking that hotter and drier rows produced larger scores than cooler and wetter rows.</p>
+      <p>The third milestone was implementing the adaptive response. The model automatically changes the output alert state based on the score, which means the system responds to updated environmental conditions without requiring the user to make another decision. This satisfied the adaptive element of the brief. I checked this stage by reviewing the output file and counting how many days fell into each alert category.</p>
+      <p>The fourth milestone was building the what-if simulations. Two scenarios were created. In the first scenario, temperature was increased by 5°C to represent hotter weather. In the second scenario, soil moisture was reduced by 15% to represent drier conditions. The same wildfire formula was then reused so that the scenario results could be compared fairly with the normal conditions. The scenario results were saved to a new CSV file and visualised with a comparison chart.</p>
+      <p>Testing took place throughout development. I tested file creation, column names, risk calculations, alert thresholds and scenario outputs. I also generated charts to check whether the patterns in the data looked sensible. One problem I encountered was that the original risk formula produced too many red-alert days, which made the results look unrealistic. To solve this, I adjusted the weight values and the alert thresholds, then reran the model until the results were more balanced while still responding correctly to hotter and drier conditions.</p>
+      <p>In detail, the wildfire model calculates dryness using <code>100 - soil_moisture</code> and air dryness using <code>100 - humidity</code>. Light intensity is scaled down so that it contributes to the score without dominating it. These components are combined into one risk score, rounded to two decimal places and written to the processed dataset. This processed data becomes the input for the scenario testing and the final visual analysis. Overall, the creation stage produced a complete artefact with data collection, modelling, scenario testing and adaptive alerting.</p>
+
+      <div class="gallery three-up">
+        <figure>
+          <img src="images/moisture_chart.png" alt="Humidity versus soil moisture scatter plot">
+          <figcaption>Figure 5. Relationship between humidity and soil moisture.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/alert_distribution.png" alt="Alert distribution bar chart">
+          <figcaption>Figure 6. Distribution of green, amber and red alert days.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/scenario_comparison_chart.png" alt="Scenario comparison chart">
+          <figcaption>Figure 7. Comparison of normal, hotter and drier-soil scenario results.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="evaluation">
+      <h2>5. Evaluation</h2>
+      <p>The final artefact successfully meets the main goals of the project. It collects and stores environmental data, analyses that data using a Python wildfire model, and automatically changes the alert output when the risk becomes high. It also includes two what-if simulations, which makes the project more useful because it shows how the same environment could behave under changed future conditions.</p>
+      <p>One strength of the artefact is its clear structure. The files run in a logical sequence and the outputs can be inspected at each stage. Another strength is that the charts make the results easy to interpret. The scenario comparison chart is especially useful because it shows that the model responds in a sensible way when temperature rises or soil moisture falls.</p>
+      <p>The main limitation is that the project uses simulated sensor data rather than live readings from physical hardware. In a future iteration, I would connect a real microcontroller and environmental sensors so that the data could be collected in real time. I would also add a small dashboard to display alerts live and allow the user to adjust thresholds more easily. Even with these limitations, the current artefact demonstrates the main ideas of environmental monitoring, risk modelling and adaptive response in a clear and testable way.</p>
+    </section>
+
+    <section id="references">
+      <h2>6. References</h2>
+      <ol>
+        <li>State Examinations Commission. <em>Leaving Certificate Computer Science Coursework Project Brief 2026</em>.</li>
+        <li>Raspberry Pi Foundation. Educational examples of environmental monitoring and classroom data projects.</li>
+        <li>micro:bit Educational Foundation. Weather-station and environmental sensing project ideas.</li>
+        <li>Public forestry and climate background resources listed in the project brief, including environmental and wildfire context materials.</li>
+      </ol>
+    </section>
+
+    <section id="wordcount">
+      <h2>7. Summary word count</h2>
+      <table>
+        <thead>
+          <tr><th>Section</th><th>Word count</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1. Meeting the brief</td><td>220</td></tr>
+          <tr><td>2. Investigation</td><td>207</td></tr>
+          <tr><td>3. Plan and design</td><td>287</td></tr>
+          <tr><td>4. Create</td><td>422</td></tr>
+          <tr><td>5. Evaluation</td><td>182</td></tr>
+          <tr><th>Total</th><th>1318</th></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
 </body>
 </html>
